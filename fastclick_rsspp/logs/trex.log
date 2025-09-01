@@ -1,0 +1,10 @@
+Starting Scapy server........... Scapy server is started
+Error while determining OS type: module 'platform' has no attribute 'dist'
+The ports are bound/configured.
+Starting  TRex v3.06 please wait  ... 
+
+Argument Parsing Error: 
+
+*** '-i' and '-d' are mutual exclusive
+
+Killing Scapy server... Scapy server is killed

@@ -1,0 +1,2 @@
+# run for 17 seconds, sample every 0.5s, write to cpu_load_wide.csv
+python3 click_cpu_logger.py --duration 17 --interval 0.5 --out cpu_load_wide.csv
