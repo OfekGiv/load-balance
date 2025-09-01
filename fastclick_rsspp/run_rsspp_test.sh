@@ -23,15 +23,14 @@ timeout -k 1s 17s sudo $FASTCLICK_DIR/bin/click --dpdk $LCORES -- fastclick/rssp
 sleep 5
 
 # run for 17 seconds, sample every 0.5s, write to cpu_load_wide.csv
-python3 cpu_logger.py --duration 17 --interval 0.5 --out rsspp_load.csv &
+python3 cpu_logger.py --duration 17 --interval 0.5 --out rsspp_load.csv --pkt-handler fd0.count --byte-handler fd0.byte_count &
 
 
 python3 trex/two_flow_remote.py -s 132.68.206.105 -p 0 --pkts $PACKETS_NUM --pps $PPS --dst1 $FLOW_DST1 --dst2 $FLOW_DST2 > /dev/null 2>&1 &
 
 
 sleep 5
-printf "READ load\n" | nc -N 127.0.0.1 1234 \
-  | tail -n1 \
+printf "READ load\n" | nc -N 127.0.0.1 1234 f | tail -n1 \
   | awk '{ for (i=1; i<=NF; i++) printf("CPU%d: %.1f%%\n", i-1, $i*100) }'
 
 #printf "READ load\n" | nc -N 127.0.0.1 1234 | tail -n1
